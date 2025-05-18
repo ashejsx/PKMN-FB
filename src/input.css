@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'dialog';
+    font-style: normal;
+    font-weight: 200 500 700;
+    font-display: swap;
+    src: url(assets/pokemon-b-w.otf.woff2);
+
+}
+@font-face {
+    font-family: 'suntitle';
+    font-style: normal;
+    font-weight: 200 500 700;
+    font-display: swap;
+    src: url(assets/smtitle.ttf);
+}
+@font-face {
+    font-family: 'poketitle';
+    font-style: normal;
+    font-weight: 200 500 700;
+    font-display: swap;
+    src: url(assets/pkmnsolid.ttf);
+}
+
+@theme {
+    --font-main: 'dialog', sans-serif;
+    
+    --font-subtitle: 'suntitle', sans-serif;
+
+    --font-title: 'poketitle', sans-serif;
+}
+
+@layer utilities {
+    .bg-pokeball {
+        background-image: url('./assets/pokeball-bg.png'); /* Replace with your image path */
+        background-size: cover;
+        background-position: center;
+    }
+    .bg-rayquaza {
+        background-image: url('./assets/rayquaza.webp'); /* Replace with your image path */
+        background-size: cover;
+        background-position: center;
+    }
+}
+
