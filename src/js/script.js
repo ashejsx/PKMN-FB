@@ -1,3 +1,4 @@
+//Pokemon Creation//
 class Pokemon {
     constructor(name, hp, maxHp, type, moves) {
         this.name = name;
@@ -35,3 +36,28 @@ const kyogre = new Boss(
         { name: "Surf", power: 20, accuracy: 1.0, critChance: 0.15}
     ],
     "easy")
+//Pokemon Creation//
+//
+//
+//
+//
+//Execute Moves//
+function performMove(attacker, defender, move) {
+    console.log(`${attacker} used ${move.name}!`)
+
+    //Accuracy Check
+    if (Math.random() > move.accuracy) {
+        console.log("Missed!");
+        return;
+    }
+
+    //Crit check
+    const isCrit = Math.random() < move.critChance;
+    const damage = isCrit ? move.power * 1.5 : move.power;
+    defender.hp = defender.hp - damage;
+
+    //Log move
+    console.log(isCrit ? "It's a critical hit!" : "")
+    console.log(`${defender.name} has ${defender.hp}/${defender.maxHp} HP remaining.`)
+
+}
