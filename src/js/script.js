@@ -111,7 +111,9 @@ async function startBattle() {
         await delay(1000);
     }
 
-    console.log(blaziken.hp > 0 ? "You win!" : "You lose!")
+    console.log(blaziken.hp > 0 
+        ? `Your ${blaziken.name} has defeated ${kyogre.name}! Victory!`
+        : `${kyogre.name} has defeated your ${blaziken.name}... You lose.`)
 }
 
 startBattle();
