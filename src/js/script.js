@@ -60,7 +60,7 @@ function performMove(attacker, defender, move) {
     defender.hp = Math.max(0, defender.hp - damage);
 
     //Log move
-    console.log(isCrit ? "It's a critical hit!" : "Attacked")
+    console.log(isCrit ? `It's a critical hit! ${damage} DMG!` : `Normal hit: ${damage} DMG!`)
     console.log(`${defender.name} has ${defender.hp}/${defender.maxHp} HP remaining.`)
 
 }
@@ -105,17 +105,13 @@ async function startBattle() {
     while (blaziken.hp > 0 && kyogre.hp > 0) {
         playerTurn();
         await delay(1000);
-        if (kyogre.hp <= 0);
+        if (kyogre.hp <= 0) break;
 
         enemyTurn();
         await delay(1000);
     }
 
-    if (blaziken.hp > 0) {
-        console.log("You win!")
-    } else {
-        console.log("You lose!")
-    }
+    console.log(blaziken.hp > 0 ? "You win!" : "You lose!")
 }
 
 startBattle();
