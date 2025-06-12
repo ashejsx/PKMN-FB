@@ -1,5 +1,12 @@
-//Displays
 const mainScreen = document.getElementById('mainScreen')
+const battleScreen = document.getElementById("battleScreen");
+const playerNameEl = document.getElementById("player-name");
+const playerHpEl = document.getElementById("player-hp");
+const enemyNameEl = document.getElementById("enemy-name");
+const enemyHpEl = document.getElementById("enemy-hp");
+const battleLogEl = document.getElementById("battle-log");
+const moveButtonsDiv = document.getElementById("move-buttons");
+//Displays
 document.addEventListener('keydown', clearDisplay)
 
 function clearDisplay() {
@@ -21,9 +28,20 @@ function showBattleScreen() {
   document.getElementById("battleScreen").classList.remove("hidden");
 }
 
+function updateHUD(player, enemy) {
+    playerHpEl.textContent = player.hp
+    enemyHpEl.textContent = enemy.hp
+}
 
+function disableButtons() {
+    const buttons = moveButtonsDiv.querySelectorAll("button");
+    buttons.map((btn) => btn.disabled === true )
+}
 
-
+function logBattle(message) {
+    battleLogEl.innerHTML += `<p>${message}</p>`;
+    battleLogEl.scrollTop = battleLogEl.scrollHeight;
+}
 //Pokemon Creation//
 class Pokemon {
     constructor(name, hp, maxHp, type, moves) {
@@ -57,17 +75,19 @@ const kyogre = new Boss("Kyogre", 100, 100, "Water",
 //
 //
 //Execute Moves//
-function performMove(attacker, defender, move) {
+function performMove(attacker, defender, move, logFn = console.log, updateFn = () => {}) {
+
     if (!move || typeof move.power !== "number") {
         console.error("Invalid move or move power!");
         return;
     }
 
-    console.log(`${attacker.name} used ${move.name}!`)
+    logFn(`${attacker.name} used ${move.name}!`)
 
     //Accuracy Check
     if (Math.random() > move.accuracy) {
-        console.log("Missed!");
+        logFn("Missed!");
+        updateFn();
         return;
     }
 
@@ -77,8 +97,9 @@ function performMove(attacker, defender, move) {
     defender.hp = Math.max(0, defender.hp - damage);
 
     //Log move
-    console.log(isCrit ? `It's a critical hit! ${damage} DMG!` : `Normal hit: ${damage} DMG!`)
-    console.log(`${defender.name} has ${defender.hp}/${defender.maxHp} HP remaining.`)
+    logFn(isCrit ? `It's a critical hit! ${damage.toFixed(1)} DMG!` : `Normal hit: ${damage} DMG!`)
+    logFn(`${defender.name} has ${defender.hp}/${defender.maxHp} HP remaining.`)
+    updateFn();
 
 }
 //Execute Moves//
@@ -111,9 +132,55 @@ function playerTurn() {
     performMove(blaziken, kyogre, move);
 }
 
+function handlePlayerTurn(move, player, enemy) {
+    performMove(player,enemy,move, logBattle, () => updateHUD(player, enemy))
+
+    if (enemy.hp <= 0) {
+        logBattle(`${enemy.name} has fainted! You win!`);
+        disableButtons();
+        return;
+    }
+
+    setTimeout(() => {
+        const enemyMove = enemy.moves[Math.floor(Math.random() * enemy.moves.length)];
+        performMove(enemy, player, enemyMove, logBattle, () => updateHUD(player,enemy));
+
+        if (player.hp <= 0) {
+            logBattle(`${player.name} has fainted! You lose!`);
+            disableButtons();
+        }
+    }, 1000)
+}
+
 function enemyTurn() {
     const move = kyogre.moves[Math.floor(Math.random() * kyogre.moves.length)]
     performMove(kyogre, blaziken, move);
+}
+
+function setupBattle(playerPokemon, bossPokemon) {
+    // Battle Screen Display
+    document.getElementById('mainScreen').classList.add('hidden')
+    battleScreen.classList.remove('hidden')
+
+    //Update HUD
+    playerNameEl.textContent = playerPokemon.name
+    playerHpEl.textContent = playerPokemon.hp
+
+    enemyNameEl.textContent = bossPokemon.name
+    enemyHpEl.textContent = bossPokemon.hp
+
+    //Clear move display
+    battleLogEl.innerHTML = '<p>The battle has begun!</p>'
+    moveButtonsDiv.innerHTML = ""
+
+    //Move Buttons
+    playerPokemon.moves.map((move) => {
+        const btn = document.createElement("button");
+        btn.textContent = move.name;
+        btn.className = "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
+        btn.addEventListener("click", () => handlePlayerTurn(move, playerPokemon, bossPokemon));
+        moveButtonsDiv.appendChild(btn);
+    })
 }
 
 async function startBattle() {
