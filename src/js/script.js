@@ -1,3 +1,4 @@
+//Displays
 const mainScreen = document.getElementById('mainScreen')
 document.addEventListener('keydown', clearDisplay)
 
@@ -13,6 +14,11 @@ function choosePokemonMenu() {
     const menu = document.createElement('div')
     menu.className = 'bg-slate-700 m-16 w-auto p-4 rounded-2xl"';
     mainScreen.appendChild(menu)
+}
+
+function showBattleScreen() {
+  document.getElementById("mainScreen").classList.add("hidden");
+  document.getElementById("battleScreen").classList.remove("hidden");
 }
 
 
