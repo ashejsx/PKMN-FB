@@ -7,7 +7,7 @@ const enemyHpEl = document.getElementById("enemy-hp");
 const battleLogEl = document.getElementById("battle-log");
 const moveButtonsDiv = document.getElementById("move-buttons");
 //Displays
-document.addEventListener('keydown', clearDisplay)
+
 
 function clearDisplay() {
     mainScreen.innerHTML = '';
@@ -29,8 +29,31 @@ function showBattleScreen() {
 }
 
 function updateHUD(player, enemy) {
+
+    //HP Text
     playerHpEl.textContent = player.hp
     enemyHpEl.textContent = enemy.hp
+
+    //HP Animation
+
+    const playerHpBar = document.getElementById("player-hp-bar");
+    const enemyHpBar = document.getElementById("enemy-hp-bar");
+
+    const playerPercent = (player.hp / player.maxHp) * 100;
+    const enemyPercent = (enemy.hp / enemy.maxHp) * 100;
+
+    playerHpBar.style.width = `${playerPercent}%`;
+    enemyHpBar.style.width = `${enemyPercent}%`;
+
+
+    playerHpBar.className = "h-2 rounded " + getHPColor(playerPercent);
+    enemyHpBar.className = "h-2 rounded " + getHPColor(enemyPercent);
+}
+
+function getHPColor(percent) {
+  if (percent > 50) return "bg-green-500";
+  if (percent > 20) return "bg-yellow-500";
+  return "bg-red-500";
 }
 
 function disableButtons() {
@@ -199,4 +222,4 @@ async function startBattle() {
         : `${kyogre.name} has defeated your ${blaziken.name}... You lose.`)
 }
 
-startBattle();
+//startBattle();
