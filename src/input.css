@@ -42,5 +42,10 @@
         background-size: cover;
         background-position: center;
     }
+    .bg-options {
+        background-image: url('./assets/option/option-screen.png'); /* Replace with your image path */
+        background-size: cover;
+        background-position: center;
+    }
 }
 

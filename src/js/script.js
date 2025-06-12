@@ -1,3 +1,23 @@
+const mainScreen = document.getElementById('mainScreen')
+document.addEventListener('keydown', clearDisplay)
+
+function clearDisplay() {
+    mainScreen.innerHTML = '';
+    setTimeout(choosePokemonMenu, 2000)
+}
+
+function choosePokemonMenu() {
+    mainScreen.classList.replace('bg-rayquaza', 'bg-options')
+    mainScreen.classList.replace('m-8', 'm-20')
+
+    const menu = document.createElement('div')
+    menu.className = 'bg-slate-700 m-16 w-auto p-4 rounded-2xl"';
+    mainScreen.appendChild(menu)
+}
+
+
+
+
 //Pokemon Creation//
 class Pokemon {
     constructor(name, hp, maxHp, type, moves) {
@@ -16,26 +36,17 @@ class Boss extends Pokemon {
     }
 }
 
-const blaziken = new Pokemon(
-    "Blaziken", 
-    100, 
-    100, 
-    "Fire/Fighting", 
+const blaziken = new Pokemon("Blaziken", 100, 100, "Fire/Fighting", 
     [
-        { name: "Flamethrower", power: 25, accuracy: 0.9, critChance: 0.1},
-        { name: "Double Kick", power: 15, accuracy: 1.0, critChance: 0.2}
+        {name: "Flamethrower", power: 25, accuracy: 0.9, critChance: 0.1},
+        {name: "Double Kick", power: 15, accuracy: 1.0, critChance: 0.2}
     ])
 
-const kyogre = new Boss(
-    "Kyogre", 
-    100, 
-    100, 
-    "Water", 
+const kyogre = new Boss("Kyogre", 100, 100, "Water", 
     [
         { name: "Hydro Pump", power: 30, accuracy: 0.8, critChance: 0.1},
         { name: "Surf", power: 20, accuracy: 1.0, critChance: 0.15}
-    ],
-    "easy")
+    ], "easy")
 //Pokemon Creation//
 //
 //
@@ -65,7 +76,6 @@ function performMove(attacker, defender, move) {
 
 }
 //Execute Moves//
-//
 //
 //
 //Stats// 

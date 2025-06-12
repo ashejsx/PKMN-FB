@@ -8,13 +8,26 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-amber-200: oklch(92.4% 0.12 95.746);
+    --color-slate-700: oklch(37.2% 0.044 257.287);
+    --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
+    --color-white: #fff;
     --spacing: 0.25rem;
+    --container-md: 28rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --font-main: 'dialog', sans-serif;
@@ -168,8 +181,14 @@
   }
 }
 @layer utilities {
+  .m-8 {
+    margin: calc(var(--spacing) * 8);
+  }
   .m-16 {
     margin: calc(var(--spacing) * 16);
+  }
+  .m-20 {
+    margin: calc(var(--spacing) * 20);
   }
   .flex {
     display: flex;
@@ -198,12 +217,21 @@
   .gap-7 {
     gap: calc(var(--spacing) * 7);
   }
+  .rounded-2xl {
+    border-radius: var(--radius-2xl);
+  }
   .border-4 {
     border-style: var(--tw-border-style);
     border-width: 4px;
   }
   .border-amber-200 {
     border-color: var(--color-amber-200);
+  }
+  .bg-slate-700 {
+    background-color: var(--color-slate-700);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
@@ -266,6 +294,11 @@
   }
   .bg-rayquaza {
     background-image: url('./assets/rayquaza.webp');
+    background-size: cover;
+    background-position: center;
+  }
+  .bg-options {
+    background-image: url('./assets/option/option-screen.png');
     background-size: cover;
     background-position: center;
   }
