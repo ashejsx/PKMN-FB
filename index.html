@@ -10,7 +10,7 @@
 <body class="overflow-hidden font-main h-screen flex justify-center bg-emerald-900">
     
     <!-- Main Screen -->
-    <main id="mainScreen" class=" bg-rayquaza border-amber-200 border-4 m-8 w-full flex flex-col justify-center text-center">
+    <main id="mainScreen" class="hidden bg-rayquaza border-amber-200 border-4 m-8 w-full flex flex-col justify-center text-center">
         <div  class="flex flex-col text-center justify-center items-center h-auto w-auto gap-7">
             <h1 class="font-title text-6xl">PoKeMoN</h1>
             <h2 class="font-subtitle text-4xl font-extrabold">Fierce Battle</h2>
@@ -42,12 +42,12 @@
                         </div>
                         <p class="text-xs">HP: <span id="enemy-hp">100</span>/100</p>
                     </div>
-                    <img id="enemy-sprite" src="https://img.pokemondb.net/sprites/black-white/anim/normal/kyogre.gif" alt="Enemy Sprite" class="w-60 h-60 object-contain">
+                    <img id="enemy-sprite" src="" alt="Enemy Sprite" class="w-60 h-60 object-contain">
                 </div>
 
             <!-- Player -->
                 <div class="flex justify-between items-center">
-                    <img id="player-sprite" src="https://img.pokemondb.net/sprites/black-white/anim/back-normal/blaziken.gif" alt="Player Sprite" class="w-40 h-40 object-contain">
+                    <img id="player-sprite" src="" alt="Player Sprite" class="w-40 h-40 object-contain">
                     <div class="text-right">
                         <h2 id="player-name" class="text-xl font-bold">Blaziken</h2>
                         <div class="w-64 h-4 bg-gray-600 border border-white rounded">
@@ -74,7 +74,7 @@
 
 
     <!-- Starter Screen -->
-    <section id="starterScreen" class="hidden min-h-screen bg-black text-white flex flex-col justify-center items-center gap-6">
+    <section id="starterScreen" class=" min-h-screen bg-black text-white flex flex-col justify-center items-center gap-6">
         <h2 class="text-3xl font-bold">Choose your PoKeMoN</h2>
         <div class="flex gap-6">
             <button type="button" onclick="selectStarter('Blaziken')" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">Blaziken</button>
