@@ -52,7 +52,7 @@ function updateHUD(player, enemy) {
     enemyHpBar.className = "h-2 rounded " + getHPColor(enemyPercent);
 }
 
-function getHPColor(percent) {
+function getHPColor(percent) { 
   if (percent > 50) return "bg-green-500";
   if (percent > 20) return "bg-yellow-500";
   return "bg-red-500";
@@ -259,7 +259,7 @@ function setupBattle(playerPokemon, bossPokemon) {
     playerPokemon.moves.map((move) => {
         const btn = document.createElement("button");
         btn.textContent = move.name;
-        btn.className = "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
+        btn.className = "bg-yellow-200 text-black font-bold py-2 px-4 rounded shadow hover:brightness-90 border border-black";
         btn.addEventListener("click", () => handlePlayerTurn(move, playerPokemon, bossPokemon));
         moveButtonsDiv.appendChild(btn);
     })
