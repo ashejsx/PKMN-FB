@@ -340,6 +340,8 @@ async function startBattle() {
         : `${kyogre.name} has defeated your ${blaziken.name}... You lose.`)
 }
 
-document.addEventListener("keydown", () => {
+window.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("keydown", () => {
     showStarterScreen();
-}, {once: true})
+  }, { once: true });
+});
