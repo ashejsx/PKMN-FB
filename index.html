@@ -7,7 +7,7 @@
     <title>PKMN</title>
 </head>
 
-<body class="font-main h-screen flex justify-center bg-emerald-900">
+<body class="overflow-hidden font-main h-screen flex justify-center bg-emerald-900">
     
     <!-- Main Screen -->
     <main id="mainScreen" class=" bg-rayquaza border-amber-200 border-4 m-8 w-full flex flex-col justify-center text-center">
@@ -26,50 +26,50 @@
 
     <!-- Battle Screen -->
     <section id="battleScreen" class="hidden fixed inset-0 bg-emerald-400 text-white overflow-hidden flex justify-center items-center">
-    <div class="w-[90vw] h-[95vh] max-w-[768px] grid grid-rows-[auto_auto_1fr_auto] gap-2">
+        <div class="w-[90vw] h-[95vh] max-w-[768px] grid grid-rows-[auto_auto_1fr_auto] gap-2">
 
-        <!-- Title -->
-        <h1 class="text-3xl font-bold text-center">Battle Start!</h1>
+            <!-- Title -->
+            <h1 class="text-3xl font-bold text-center">Battle Start!</h1>
 
-        <!-- Sprites and HP Bars -->
-        <div class="grid grid-rows-2 gap-4">
-        <!-- Enemy -->
-        <div class="flex justify-between items-center">
-            <div class="text-left">
-                <h2 id="enemy-name" class="text-xl font-bold">Kyogre</h2>
-                <div class="w-64 h-4 bg-gray-600 border border-white rounded">
-                    <div id="enemy-hp-bar" class="h-4 bg-green-500 rounded transition-all duration-300 w-full"></div>
+            <!-- Sprites and HP Bars -->
+            <div class="grid grid-rows-2 gap-4">
+            <!-- Enemy -->
+                <div class="flex justify-between items-center">
+                    <div class="text-left">
+                        <h2 id="enemy-name" class="text-xl font-bold">Kyogre</h2>
+                        <div class="w-64 h-4 bg-gray-600 border border-white rounded">
+                            <div id="enemy-hp-bar" class="h-4 bg-green-500 rounded transition-all duration-300 w-full"></div>
+                        </div>
+                        <p class="text-xs">HP: <span id="enemy-hp">100</span>/100</p>
+                    </div>
+                    <img id="enemy-sprite" src="https://img.pokemondb.net/sprites/black-white/anim/normal/kyogre.gif" alt="Enemy Sprite" class="w-60 h-60 object-contain">
                 </div>
-                <p class="text-xs">HP: <span id="enemy-hp">100</span>/100</p>
-            </div>
-            <img id="enemy-sprite" src="/src/assets/sprite_Kyogre.webp" alt="Enemy Sprite" class="w-40 h-40 object-contain">
-        </div>
 
-        <!-- Player -->
-        <div class="flex justify-between items-center">
-            <img id="player-sprite" src="/src/assets/sprite_Blaziken.webp" alt="Player Sprite" class="w-40 h-40 object-contain">
-            <div class="text-right">
-                <h2 id="player-name" class="text-xl font-bold">Blaziken</h2>
-                <div class="w-64 h-4 bg-gray-600 border border-white rounded">
-                    <div id="player-hp-bar" class="h-4 bg-green-500 rounded transition-all duration-300 w-full"></div>
+            <!-- Player -->
+                <div class="flex justify-between items-center">
+                    <img id="player-sprite" src="https://img.pokemondb.net/sprites/black-white/anim/back-normal/blaziken.gif" alt="Player Sprite" class="w-40 h-40 object-contain">
+                    <div class="text-right">
+                        <h2 id="player-name" class="text-xl font-bold">Blaziken</h2>
+                        <div class="w-64 h-4 bg-gray-600 border border-white rounded">
+                            <div id="player-hp-bar" class="h-4 bg-green-500 rounded transition-all duration-300 w-full"></div>
+                        </div>
+                        <p class="text-xs">HP: <span id="player-hp">100</span>/100</p>
+                    </div>
                 </div>
-                <p class="text-xs">HP: <span id="player-hp">100</span>/100</p>
+            </div>
+
+            <!-- Battle Log -->
+            <div class="bg-white text-black font-mono border-4 border-black p-3 rounded-md shadow-inner text-sm h-full overflow-y-auto">
+                <div id="battle-log">
+                    <p>The battle has begun!</p>
+                </div>
+            </div>
+
+            <!-- Move Buttons -->
+            <div id="move-buttons" class="grid grid-cols-2 gap-2 p-4 bg-slate-800 rounded border-4 border-white">
+            <!-- Buttons go here -->
             </div>
         </div>
-        </div>
-
-        <!-- Battle Log -->
-        <div class="bg-white text-black font-mono border-4 border-black p-3 rounded-md shadow-inner text-sm h-full overflow-y-auto">
-        <div id="battle-log">
-            <p>The battle has begun!</p>
-        </div>
-        </div>
-
-        <!-- Move Buttons -->
-        <div id="move-buttons" class="grid grid-cols-2 gap-2 p-4 bg-slate-800 rounded border-4 border-white">
-        <!-- Buttons go here -->
-        </div>
-    </div>
     </section>
 
 
