@@ -124,7 +124,36 @@ class Boss extends Pokemon {
 //Pokemon Creation//
 //
 //Pre-Battle
+function selectStarter(name) {
+    if (name === "Blaziken") {
+        selectedStarter = blaziken;
+    }
+    else if (name === "Sceptile") {
+        selectedStarter = sceptile;
+    }
+    else if (name === "Swampert") {
+        selectedStarter = swampert;
+    }
 
+    document.getElementById("starterScreen").classList.add("hidden")
+    document.getElementById("difficultyScreen").classList.remove("hidden")
+}
+
+function selectDifficulty(level) {
+    if (level === "easy") {
+        selectedBoss = kyogre
+    }
+    else if (level === "medium") {
+        selectedBoss = groudon
+    }
+    else if (level === "hard") {
+        selectedBoss = rayquaza
+    }
+
+    scaleDifficulty(selectedBoss);
+    document.getElementById("difficultyScreen").classList.add("hidden");
+    setupBattle(selectedStarter, selectedBoss)
+}
 //Pre-Battle
 //
 //Execute Moves//
@@ -252,4 +281,6 @@ async function startBattle() {
         : `${kyogre.name} has defeated your ${blaziken.name}... You lose.`)
 }
 
-//startBattle();
+document.addEventListener("keydown", () => {
+    showStarterScreen();
+}, {once: true})

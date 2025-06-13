@@ -10,7 +10,7 @@
 <body class="font-main h-screen flex justify-center bg-pokeball">
     
     <!-- Main Screen -->
-    <main id="mainScreen" class="hidden bg-rayquaza border-amber-200 border-4 m-8 w-full flex flex-col justify-center text-center">
+    <main id="mainScreen" class="bg-rayquaza border-amber-200 border-4 m-8 w-full flex flex-col justify-center text-center">
         <div  class="flex flex-col text-center justify-center items-center h-auto w-auto gap-7">
             <h1 class="font-title text-6xl">PoKeMoN</h1>
             <h2 class="font-subtitle text-4xl font-extrabold">Fierce Battle</h2>
@@ -19,13 +19,13 @@
         <div id="startModal">                  
         </div>
         
-        <h4 class="text-4xl font-bold p-8">
+        <h4 id="startText" class="text-4xl font-bold p-8">
             Press any key to start!
         </h4>
     </main>
 
     <!-- Battle Screen -->
-    <section id="battleScreen" class=" bg-gradient-to-b from-black to-emerald-900 text-white min-h-screen p-6">
+    <section id="battleScreen" class="hidden bg-gradient-to-b from-black to-emerald-900 text-white min-h-screen p-6">
         <div class="max-w-2xl mx-auto space-y-4">
             <h1 class="text-3xl font-bold text-center">Battle Start!</h1>
 

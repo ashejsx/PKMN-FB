@@ -33,7 +33,7 @@
 
 @layer utilities {
     .bg-pokeball {
-        background-image: url('./assets/pokeball-bg.png'); /* Replace with your image path */
+        background-image: url('./assets/pokeball-bg.webp'); /* Replace with your image path */
         background-size: cover;
         background-position: center;
     }
