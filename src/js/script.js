@@ -1,3 +1,8 @@
+// Selectors
+
+let selectedStarter = null;
+let selectedBoss = null;
+
 const mainScreen = document.getElementById('mainScreen')
 const battleScreen = document.getElementById("battleScreen");
 const playerNameEl = document.getElementById("player-name");
@@ -6,21 +11,18 @@ const enemyNameEl = document.getElementById("enemy-name");
 const enemyHpEl = document.getElementById("enemy-hp");
 const battleLogEl = document.getElementById("battle-log");
 const moveButtonsDiv = document.getElementById("move-buttons");
+
+//
 //Displays
-
-
+//
 function clearDisplay() {
     mainScreen.innerHTML = '';
     setTimeout(choosePokemonMenu, 2000)
 }
 
-function choosePokemonMenu() {
-    mainScreen.classList.replace('bg-rayquaza', 'bg-options')
-    mainScreen.classList.replace('m-8', 'm-20')
-
-    const menu = document.createElement('div')
-    menu.className = 'bg-slate-700 m-16 w-auto p-4 rounded-2xl"';
-    mainScreen.appendChild(menu)
+function showStarterScreen() {
+    document.getElementById("mainScreen").classList.add("hidden");
+    document.getElementById("starterScreen").classList.remove("hidden");
 }
 
 function showBattleScreen() {
@@ -58,13 +60,16 @@ function getHPColor(percent) {
 
 function disableButtons() {
     const buttons = moveButtonsDiv.querySelectorAll("button");
-    buttons.map((btn) => btn.disabled === true )
+    buttons.forEach((btn) => btn.disabled === true )
 }
 
 function logBattle(message) {
     battleLogEl.innerHTML += `<p>${message}</p>`;
     battleLogEl.scrollTop = battleLogEl.scrollHeight;
 }
+//Displays
+//
+//
 //Pokemon Creation//
 class Pokemon {
     constructor(name, hp, maxHp, type, moves) {
@@ -82,20 +87,45 @@ class Boss extends Pokemon {
         this.difficulty = difficulty;
     }
 }
+        //Starters
+        const blaziken = new Pokemon("Blaziken", 100, 100, "Fire/Fighting", 
+            [
+                {name: "Flamethrower", power: 25, accuracy: 0.9, critChance: 0.1},
+                {name: "Double Kick", power: 15, accuracy: 1.0, critChance: 0.2}
+            ])
+        const sceptile = new Pokemon("Sceptile", 100, 100, "Grass", 
+            [
+                {name: "Leaf Blade", power: 22, accuracy: 1.0, critChance: 0.25},
+                {name: "Quick Attack", power: 12, accuracy: 1.0, critChance: 0.1}
+            ])
+        const swampert = new Pokemon("Swampert", 100, 100, "Water/Ground", 
+            [
+                {name: "Muddy Water", power: 24, accuracy: 0.85, critChance: 0.15},
+                {name: "Earthquake", power: 30, accuracy: 0.75, critChance: 0.2}
+            ])
 
-const blaziken = new Pokemon("Blaziken", 100, 100, "Fire/Fighting", 
-    [
-        {name: "Flamethrower", power: 25, accuracy: 0.9, critChance: 0.1},
-        {name: "Double Kick", power: 15, accuracy: 1.0, critChance: 0.2}
-    ])
+        //Bosses
 
-const kyogre = new Boss("Kyogre", 100, 100, "Water", 
-    [
-        { name: "Hydro Pump", power: 30, accuracy: 0.8, critChance: 0.1},
-        { name: "Surf", power: 20, accuracy: 1.0, critChance: 0.15}
-    ], "easy")
+        const kyogre = new Boss("Kyogre", 100, 100, "Water", 
+            [
+                { name: "Hydro Pump", power: 30, accuracy: 0.8, critChance: 0.1},
+                { name: "Surf", power: 20, accuracy: 1.0, critChance: 0.15}
+            ], "easy")
+        const groudon = new Boss("Groudon", 100, 100, "Ground", 
+            [
+                { name: "Earth Power", power: 28, accuracy: 0.9, critChance: 0.15},
+                { name: "Eruption", power: 25, accuracy: 0.85, critChance: 0.2}
+            ], "medium")
+        const rayquaza = new Boss("Rayquaza", 100, 100, "Flying/Dragon", 
+            [
+                { name: "Dragon Pulse", power: 25, accuracy: 0.95, critChance: 0.2},
+                { name: "Hyper Beam", power: 35, accuracy: 0.7, critChance: 0.3}
+            ], "hard")
 //Pokemon Creation//
 //
+//Pre-Battle
+
+//Pre-Battle
 //
 //Execute Moves//
 function performMove(attacker, defender, move, logFn = console.log, updateFn = () => {}) {
